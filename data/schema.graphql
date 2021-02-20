@@ -1,0 +1,50 @@
+type Jobs {
+    id: ID
+    company: String
+    jobtitle: String
+    category: CategoryJob
+    city: CityJob
+    country: String
+    link: String
+    email: String
+    startDate: String
+}
+
+type Query {
+    getJobs(limit: Int, offset: Int): [Jobs]
+}
+enum CategoryJob{
+    FRONTEND
+    BACKEND
+    SOCIAL_MEDIA
+    UI_UX
+    VENTAS
+}
+
+enum CityJob{
+    SANTA_CRUZ
+    LA_PAZ
+    COCHABAMBA
+    CHUQUISACA
+    TARIJA
+    ORURO
+    POTOSI
+    BENI
+    PANDO
+}
+
+input JobInput {
+    id: ID
+    company: String
+    jobtitle: String
+    category: String
+    city: String
+    country: String
+    link: String
+    email: String
+    startDate: String
+}
+
+type Mutation{
+    addJob(input: JobInput) : Jobs
+}
