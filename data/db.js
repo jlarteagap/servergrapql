@@ -12,6 +12,7 @@ const jobsSchema = new mongoose.Schema({
     country: String,
     link: String,
     email: String,
+    remote: Boolean,
     startDate: Date
 });
 

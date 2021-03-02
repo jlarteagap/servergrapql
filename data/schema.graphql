@@ -7,7 +7,9 @@ type Jobs {
     country: String
     link: String
     email: String
+    remote: Boolean
     startDate: String
+    
 }
 
 type Query {
@@ -42,6 +44,7 @@ input JobInput {
     country: String
     link: String
     email: String
+    remote: Boolean
     startDate: String
 }
 

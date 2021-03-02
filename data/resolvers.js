@@ -19,6 +19,7 @@ export const resolvers = {
                 country: input.country,
                 link: input.link,
                 email: input.email,
+                remote: input.remote,
                 startDate: new Date()
             });
 
