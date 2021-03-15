@@ -6,14 +6,16 @@ mongoose.connect('mongodb://localhost/remote', {useNewUrlParser : true, useUnifi
 
 const jobsSchema = new mongoose.Schema({
     company: String,
-    jobtitle: String,
+    logo: String,
+    position: String,
     category: String,
     city: String,
     country: String,
     link: String,
     email: String,
     remote: Boolean,
-    startDate: Date
+    startDate: Date,
+    tags: Array,
 });
 
 const Jobs = mongoose.model('jobs', jobsSchema);

@@ -1,7 +1,8 @@
 type Jobs {
     id: ID
     company: String
-    jobtitle: String
+    logo: String
+    position: String
     category: CategoryJob
     city: CityJob
     country: String
@@ -9,18 +10,19 @@ type Jobs {
     email: String
     remote: Boolean
     startDate: String
-    
+    tags: [Tags]
 }
-
+type Tags {
+    tag: String
+}
 type Query {
     getJobs(limit: Int, offset: Int): [Jobs]
 }
 enum CategoryJob{
-    FRONTEND
-    BACKEND
+    SOFTWARE_DEVELOP
     SOCIAL_MEDIA
-    UI_UX
-    VENTAS
+    DESIGNER
+    SALES
 }
 
 enum CityJob{
@@ -34,11 +36,14 @@ enum CityJob{
     BENI
     PANDO
 }
-
+input TagsInput{
+    tag: String
+}
 input JobInput {
     id: ID
     company: String
-    jobtitle: String
+    logo: String
+    position: String
     category: String
     city: String
     country: String
@@ -46,6 +51,7 @@ input JobInput {
     email: String
     remote: Boolean
     startDate: String
+    tags: [TagsInput]
 }
 
 type Mutation{

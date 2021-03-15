@@ -13,14 +13,16 @@ export const resolvers = {
         addJob : (root, { input }) => {
             const addJob = new Jobs({
                 company: input.company,
-                jobtitle: input.jobtitle,
+                logo: input.logo,
+                position: input.jobtitle,
                 category: input.category,
                 city: input.city,
-                country: input.country,
+                country: 'Bolivia',
                 link: input.link,
                 email: input.email,
                 remote: input.remote,
-                startDate: new Date()
+                startDate: new Date(),
+                tags: input.tags
             });
 
             addJob.id = addJob._id;
