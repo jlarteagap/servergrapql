@@ -14,7 +14,7 @@ export const resolvers = {
             const addJob = new Jobs({
                 company: input.company,
                 logo: input.logo,
-                position: input.jobtitle,
+                position: input.position,
                 category: input.category,
                 city: input.city,
                 country: 'Bolivia',
