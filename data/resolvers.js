@@ -6,6 +6,25 @@ export const resolvers = {
     Query: {
         getJobs : (root, {limit, offset}) => {
             return Jobs.find({}).limit(limit).skip(offset)
+        },
+        //Seleccion por Categorias
+        byCategories: (root, {category}) => {
+            return new Promise((resolve, object) => {
+                Jobs.find({category: category}, (error, category) => {
+                    if(error) rejects(error)
+                    else resolve(category)
+                })
+            })
+        },
+
+        // Seleccion por Tags
+        byTags:(root, {tags}) => {
+            return new Promise((resolve, object) => {
+                Jobs.find({tags: tags}, (error, tags) => {
+                    if(error) rejects(error)
+                    else resolve(tags)
+                })
+            })
         }
     },
     // Mutaciones
