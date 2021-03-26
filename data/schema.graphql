@@ -17,8 +17,9 @@ type Tags {
 }
 type Query {
     getJobs(limit: Int, offset: Int): [Jobs]
-    byCategories(category: String): [Jobs]
-    byTags(tags: String): [Jobs]
+    byCategories(category: String, limit: Int, offset: Int): [Jobs]
+    byTags(tags: String, limit: Int, offset: Int): [Jobs]
+    totalJobs : String
 }
 enum CategoryJob{
     SOFTWARE_DEVELOP

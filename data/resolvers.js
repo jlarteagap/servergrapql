@@ -8,21 +8,29 @@ export const resolvers = {
             return Jobs.find({}).limit(limit).skip(offset)
         },
         //Seleccion por Categorias
-        byCategories: (root, {category}) => {
+        byCategories: (root, {category, limit, offset}) => {
             return new Promise((resolve, object) => {
                 Jobs.find({category: category}, (error, category) => {
                     if(error) rejects(error)
                     else resolve(category)
-                })
+                }).limit(limit).skip(offset)
             })
         },
 
         // Seleccion por Tags
-        byTags:(root, {tags}) => {
+        byTags:(root, {tags, limit, offset}) => {
             return new Promise((resolve, object) => {
                 Jobs.find({tags: tags}, (error, tags) => {
                     if(error) rejects(error)
                     else resolve(tags)
+                })
+            })
+        },
+        totalJobs : (root) => {
+            return new Promise((resolve, object) => {
+                Jobs.countDocuments({}, (error, count) => {
+                    if(error) rejects(error)
+                    else resolve(count)
                 })
             })
         }
