@@ -20,6 +20,7 @@ type Query {
     byCategories(category: String, limit: Int, offset: Int): [Jobs]
     byTags(tags: String, limit: Int, offset: Int): [Jobs]
     totalJobs : String
+    totalCategories(category: String): String
 }
 enum CategoryJob{
     SOFTWARE_DEVELOP

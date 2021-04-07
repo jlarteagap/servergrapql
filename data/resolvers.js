@@ -5,7 +5,7 @@ import { Jobs } from './db.js'
 export const resolvers = {
     Query: {
         getJobs : (root, {limit, offset}) => {
-            return Jobs.find({}).limit(limit).skip(offset)
+            return Jobs.find({}).limit(limit).skip(offset).sort({startDate: -1})
         },
         //Seleccion por Categorias
         byCategories: (root, {category, limit, offset}) => {
@@ -29,6 +29,14 @@ export const resolvers = {
         totalJobs : (root) => {
             return new Promise((resolve, object) => {
                 Jobs.countDocuments({}, (error, count) => {
+                    if(error) rejects(error)
+                    else resolve(count)
+                })
+            })
+        },
+        totalCategories : (root, {category})  =>{
+            return new Promise((resolve, object) => {
+                Jobs.countDocuments({category: category}, (error, count) => {
                     if(error) rejects(error)
                     else resolve(count)
                 })
