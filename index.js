@@ -9,4 +9,5 @@ const app = express();
 const server = new ApolloServer({ typeDefs, resolvers});
 server.applyMiddleware({app});
 
-app.listen({port: 4000}, () => console.log(`El servidor esta corriendo en ${server.graphqlPath}`))
+app.listen(process.env.PORT || 4000, 
+	() => console.log("Server is runningo en ${server.graphqlPath}`"))
