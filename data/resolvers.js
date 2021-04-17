@@ -13,7 +13,7 @@ export const resolvers = {
                 Jobs.find({category: category}, (error, category) => {
                     if(error) rejects(error)
                     else resolve(category)
-                }).limit(limit).skip(offset)
+                }).limit(limit).skip(offset).sort({startDate: -1})
             })
         },
 
