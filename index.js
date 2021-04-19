@@ -6,7 +6,7 @@ import { typeDefs } from './data/schema.js';
 import { resolvers } from './data/resolvers.js'
 
 const app = express();
-const server = new ApolloServer({ typeDefs, resolvers});
+const server = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true,});
 server.applyMiddleware({app});
 
 app.listen(process.env.PORT || 4000, 
