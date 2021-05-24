@@ -1,6 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose'
-import { Jobs } from './db.js'
+import { Jobs, User } from './db.js'
 
 export const resolvers = {
     Query: {
@@ -68,6 +68,27 @@ export const resolvers = {
                     else resolve(addJob)
                 })
             });
+        },
+        // Crear usuario
+        createUser: async(root, {email, name, lastname, password, role, company}) => {
+            // Revisar si existe el correo electronico como usuario. 
+            const existUser = await User.find({email})
+
+            if(existUser){
+                throw new Error('El usuario ya existe...')
+            }
+
+            // De lo contrario creamos un nuevo usuario 
+            const newUser = await new User({
+                email,
+                name, 
+                lastname,
+                password,
+                company,
+                role
+            }).save()
+
+            return "Usuario creado correctamente..."
         }
     }
 }

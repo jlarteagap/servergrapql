@@ -60,4 +60,5 @@ input JobInput {
 
 type Mutation{
     addJob(input: JobInput) : Jobs
+    createUser(email: String!, password: String!, name: String, lastname: String, company: String, role: String): String
 }

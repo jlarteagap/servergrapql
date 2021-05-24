@@ -25,4 +25,14 @@ const jobsSchema = new mongoose.Schema({
 
 const Jobs = mongoose.model('jobs', jobsSchema);
 
-export {Jobs}
+const userSchema = new mongoose.Schema({
+    name: String,
+    lastname: String,
+    email: String,
+    password: String,
+    role: String,
+    company: Array,
+})
+
+const User = mongoose.model('user', userSchema)
+export {Jobs, User}
