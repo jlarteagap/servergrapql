@@ -72,7 +72,7 @@ export const resolvers = {
         // Crear usuario
         createUser: async(root, {email, name, lastname, password, role, company}) => {
             // Revisar si existe el correo electronico como usuario. 
-            const existUser = await User.find({email})
+            const existUser = await User.findOne({email})
 
             if(existUser){
                 throw new Error('El usuario ya existe...')
