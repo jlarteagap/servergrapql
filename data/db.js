@@ -1,6 +1,6 @@
 import e from 'express';
 import mongoose from 'mongoose';
-import bcrypt, { hash } from 'bcrypt'
+import bcrypt from 'bcrypt'
 
 
 const uri = "mongodb://localhost/remote"

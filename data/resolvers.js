@@ -2,6 +2,13 @@ import express from 'express';
 import mongoose from 'mongoose'
 import { Jobs, User } from './db.js'
 
+import bcrypt from 'bcrypt'
+// Generar token 
+import dotenv from 'dotenv'
+import jwt from 'jsonwebtoken'
+
+dotenv.config({path: '../variables.env'})
+
 export const resolvers = {
     Query: {
         getJobs : (root, {limit, offset}) => {
@@ -89,6 +96,22 @@ export const resolvers = {
             }).save()
 
             return "Usuario creado correctamente..."
+        },
+        autenticateUser: async(root, {email, password}) => {
+            const userEmail = await User.findOne({email})
+
+            if(!userEmail){
+                throw new Error('El usuario no existe...')
+            }
+            const passwordUser = await bcrypt.compare(password, userEmail.password)
+
+            if(!passwordUser){
+                throw new Error("Contraseña Incorrecta")
+            }
+            
+            return{
+                token: "token bonito..."
+            }
         }
     }
 }

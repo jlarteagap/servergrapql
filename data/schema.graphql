@@ -15,6 +15,9 @@ type Jobs {
 type Tags {
     tag: String
 }
+type Token{
+    token: String!
+}
 type Query {
     getJobs(limit: Int, offset: Int): [Jobs]
     byCategories(category: String, limit: Int, offset: Int): [Jobs]
@@ -61,4 +64,5 @@ input JobInput {
 type Mutation{
     addJob(input: JobInput) : Jobs
     createUser(email: String!, password: String!, name: String, lastname: String, company: String, role: String): String
+    autenticateUser(email: String!, password: String!): Token
 }
