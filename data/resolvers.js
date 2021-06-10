@@ -7,7 +7,12 @@ import bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
 
-dotenv.config({path: '../variables.env'})
+dotenv.config({path: 'variables.env'})
+
+const tokenCreate = (user, secret, expiresIn) => {
+    const {email} = user    
+    return jwt.sign({email}, secret, {expiresIn})
+}
 
 export const resolvers = {
     Query: {
@@ -110,7 +115,7 @@ export const resolvers = {
             }
             
             return{
-                token: "token bonito..."
+                token: tokenCreate(userEmail, process.env.SECRET, '1hr')
             }
         }
     }
