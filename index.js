@@ -1,10 +1,13 @@
-import express from 'express'
+import express, { request } from 'express'
 import cors from 'cors'
 import { ApolloServer } from 'apollo-server-express';
+import dotenv from 'dotenv'
+import jwt from 'jsonwebtoken'
 
 import { typeDefs } from './data/schema.js';
 import { resolvers } from './data/resolvers.js'
 
+dotenv.config({path: 'variables.env'})
 const app = express();
 app.use(cors())
 
@@ -14,8 +17,17 @@ const server = new ApolloServer({
 	introspection: true, 
 	playground: true,
 	context: async ({ req }) => {
-		const token = req.headers['authorization']
-        console.log("🚀 ~ file: index.js ~ line 18 ~ context: ~ token", token)
+		const token = req.headers['authorization']		
+		if(token.length>2){
+			try{
+				const userActual = jwt.verify(token, process.env.SECRET)
+				// enviamos los datos del usuario al request, lo que hara que siempre este disponible 
+                req.userActual = userActual
+				
+			} catch {
+
+			}
+		}
 	}
 });
 server.applyMiddleware({app});

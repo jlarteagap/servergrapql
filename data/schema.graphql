@@ -12,6 +12,14 @@ type Jobs {
     startDate: String
     tags: [Tags]
 }
+type User {
+    name: String,
+    lastname: String,
+    email: String,
+    password: String,
+    role: String,
+    company: Array,
+}
 type Tags {
     tag: String
 }
@@ -21,9 +29,10 @@ type Token{
 type Query {
     getJobs(limit: Int, offset: Int): [Jobs]
     byCategories(category: String, limit: Int, offset: Int): [Jobs]
-    byTags(tags: String, limit: Int, offset: Int): [Jobs]
     totalJobs : String
     totalCategories(category: String): String
+    
+    getUser : User
 }
 enum CategoryJob{
     SOFTWARE_DEVELOP

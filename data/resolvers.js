@@ -28,16 +28,6 @@ export const resolvers = {
                 }).limit(limit).skip(offset).sort({startDate: -1})
             })
         },
-
-        // Seleccion por Tags
-        byTags:(root, {tags, limit, offset}) => {
-            return new Promise((resolve, object) => {
-                Jobs.find({tags: tags}, (error, tags) => {
-                    if(error) rejects(error)
-                    else resolve(tags)
-                })
-            })
-        },
         totalJobs : (root) => {
             return new Promise((resolve, object) => {
                 Jobs.countDocuments({}, (error, count) => {
@@ -53,6 +43,16 @@ export const resolvers = {
                     else resolve(count)
                 })
             })
+        }
+        getUser:(root, args, {userActual}) => {
+            if(!userActual){
+                return null 
+            }
+
+            console.log( userActual )
+
+            const user = User.findOne({ email: userActual.email})
+            return user
         }
     },
     // Mutaciones
