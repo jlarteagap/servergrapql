@@ -43,7 +43,7 @@ export const resolvers = {
                     else resolve(count)
                 })
             })
-        }
+        },
         getUser:(root, args, {userActual}) => {
             if(!userActual){
                 return null 
@@ -89,7 +89,6 @@ export const resolvers = {
             if(existUser){
                 throw new Error('El usuario ya existe...')
             }
-
             // De lo contrario creamos un nuevo usuario 
             const newUser = await new User({
                 email,
