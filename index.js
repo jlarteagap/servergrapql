@@ -8,7 +8,16 @@ import { resolvers } from './data/resolvers.js'
 const app = express();
 app.use(cors())
 
-const server = new ApolloServer({ typeDefs, resolvers, introspection: true, playground: true,});
+const server = new ApolloServer({ 
+	typeDefs, 
+	resolvers, 
+	introspection: true, 
+	playground: true,
+	context: async ({ req }) => {
+		const token = req.headers['authorization']
+        console.log("🚀 ~ file: index.js ~ line 18 ~ context: ~ token", token)
+	}
+});
 server.applyMiddleware({app});
 
 app.listen(process.env.PORT || 4000, 
