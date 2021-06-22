@@ -17,8 +17,7 @@ type User {
     lastname: String,
     email: String,
     password: String,
-    role: String,
-    company: Array,
+    role: String
 }
 type Tags {
     tag: String

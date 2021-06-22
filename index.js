@@ -16,16 +16,16 @@ const server = new ApolloServer({
 	resolvers, 
 	introspection: true, 
 	playground: true,
-	context: async ({ req }) => {
-		const token = req.headers['authorization']		
-		if(token.length>2){
+	context: async ({req}) => {
+
+		const token = req.headers.authorization || '';
+
+		if(token !== null){
 			try{
 				const userActual = jwt.verify(token, process.env.SECRET)
-				// enviamos los datos del usuario al request, lo que hara que siempre este disponible 
-                req.userActual = userActual
-				
+				return userActual
 			} catch {
-
+				console.log(error.message)
 			}
 		}
 	}

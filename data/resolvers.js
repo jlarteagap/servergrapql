@@ -44,14 +44,14 @@ export const resolvers = {
                 })
             })
         },
-        getUser:(root, args, {userActual}) => {
-            if(!userActual){
-                return null 
+        getUser:(root, args, context) => {
+            
+            
+            if(!context){
+                return null
             }
 
-            console.log( userActual )
-
-            const user = User.findOne({ email: userActual.email})
+            const user = User.findOne({ email: context.email})
             return user
         }
     },
