@@ -45,12 +45,9 @@ export const resolvers = {
             })
         },
         getUser:(root, args, context) => {
-            
-            
             if(!context){
                 return null
             }
-
             const user = User.findOne({ email: context.email})
             return user
         }
