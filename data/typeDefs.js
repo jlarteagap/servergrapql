@@ -1,9 +1,6 @@
 import  { ApolloServer, gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
-  # The implementation for this scalar is provided by the
-  # 'GraphQLUpload' export from the 'graphql-upload' package
-  # in the resolver map below.
   scalar Upload
 
   type File {
@@ -13,23 +10,90 @@ export const typeDefs = gql`
   type Jobs {
     id: ID
     position: String
+    category: CategoryJob
+    city: CityJob
+    country: String
+    link: String
+    remote: Boolean
+    company: Company
+    startDate: String
+  }
+  type Token{
+    token: String!
+  }
+  type User {
+    id: ID,
+    name: String,
+    lastname: String,
+    email: String,
+    password: String,
+    role: String
+  }
+  type Company {
+    id: ID,
+    name: String
+    site: String
+    description: String
+    logo: String
+    user: String
+  }
+
+  enum CategoryJob{
+    SOFTWARE_DEVELOP
+    SOCIAL_MEDIA
+    DESIGNER
+    SALES
+  }
+
+  enum CityJob{
+    SANTA_CRUZ
+    LA_PAZ
+    COCHABAMBA
+    CHUQUISACA
+    TARIJA
+    ORURO
+    POTOSI
+    BENI
+    PANDO
+  }
+
+  input JobInput {
+    id: ID
+    company: String
+    logo: String
+    position: String
     category: String
     city: String
     country: String
     link: String
+    email: String
     remote: Boolean
     startDate: String
 }
 
+input CompanyInput{
+    id: ID
+    name: String,
+    site: String,
+    description: String,
+    logo: String,
+    user: String
+}
   type Query {
-    # This is only here to satisfy the requirement that at least one
-    # field be present within the 'Query' type.  This example does not
-    # demonstrate how to fetch uploads back.
     getJobs(limit: Int, offset: Int): [Jobs]
+    byCategories(category: String, limit: Int, offset: Int): [Jobs]
+    totalJobs : String
+    totalCategories(category: String): String
+    getUser : User
   }
 
   type Mutation {
     # Multiple uploads are supported. See graphql-upload docs for details.
     singleUpload(file: Upload!): File!
+
+    addJob(input: JobInput) : Jobs
+    createUser(email: String!, password: String!, name: String, lastname: String, company: String, role: String): String
+    autenticateUser(email: String!, password: String!): Token
+    createCompany(input: CompanyInput) : Company
   }
 `;

@@ -22,4 +22,42 @@ const jobsSchema = new mongoose.Schema({
 
 const Jobs = mongoose.model('jobs', jobsSchema);
 
-export { Jobs }
+const userSchema = new mongoose.Schema({
+    name: String,
+    lastname: String,
+    email: String,
+    password: String,
+    role: String,
+    company: Array,
+})
+
+userSchema.pre('save', function(next){
+    if(!this.isModified('password')){
+        return next()
+    }
+    // usamos bcrypt para encriptar la contrasenha con valor de 10 rondas
+    bcrypt.genSalt(10, (err, salt) => {
+        if(err) return next(err)
+        // let password = this.password.toString()
+
+        bcrypt.hash(this.password, salt, (err, hash) =>{
+            if(err) return next(err)
+            this.password = hash
+            next()
+        })
+    })
+})
+
+const User = mongoose.model('user', userSchema)
+
+const companySchema = new mongoose.Schema({
+    name: String,
+    site: String,
+    description: String,
+    logo: String,
+    user: mongoose.Types.ObjectId
+})
+
+const Company = mongoose.model('companies', companySchema)
+
+export {Jobs, User, Company}
