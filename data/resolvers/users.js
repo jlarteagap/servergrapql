@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import {User} from '../../data/db.js'
-import { validateRegisterInput} from '../../utils/validators.js'
+import { validateRegisterInput, validateLoginInput } from '../../utils/validators.js'
 
 dotenv.config()
  
@@ -15,8 +15,35 @@ const generateToken =(user) =>{
 }
 
 export const userResolvers = {
-    Mutation: {    
-      createUser: async(root, {input: { email, password, confirmPassword}}) => {
+    Mutation: {
+        login: async(root, {email, password}) => {
+            const { errors, valid } = validateLoginInput(email, password)
+    
+            if(!valid){
+                throw new UserInputError('Errors', {errors})
+            }
+            const user = await User.findOne({ email })
+
+            if(!user){
+                errors.general = 'Usuario no encontrado'
+                throw new UserInputError('Credenciales incorrectas correo electrónico o contraseña no válidos', { errors })
+            }
+
+            const match = await bcrypt.compare(password, user.password)
+            if(!match){
+                errors.general = 'Credenciales incorrectas correo electrónico o contraseña no válidos'
+                throw new UserInputError('Credenciales incorrectas correo electrónico o contraseña no válidos', { errors })
+            }
+    
+            const token = generateToken(user)
+
+            return {
+                ...user._doc,
+                id: user._id,
+                token
+            }
+        }, 
+        register: async(root, {input: { email, password, confirmPassword}}) => {
         // validaciones 
         const { valid, errors} = validateRegisterInput(email, password, confirmPassword)
         if(!valid){
@@ -46,7 +73,7 @@ export const userResolvers = {
 
         const res = await newUser.save()
         const token = generateToken(res)
-        
+
         return{
             ...res._doc,
             id: res._id,

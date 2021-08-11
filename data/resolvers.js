@@ -87,6 +87,25 @@ export const resolvers = {
     //         })
     //     });
     //   },
+
+    // createCompany: ( root, {input}) => {
+    //     const createCompany = new Company({
+    //         name: input.name,
+    //         site: input.site,
+    //         description: input.description,
+    //         logo: input.logo,
+    //         user: input.user
+    //     })
+
+    //     createCompany.id = createCompany._id
+
+    //     return new Promise((resolve, object) => {
+    //         createCompany.save((error) =>{
+    //             if(error) rejects(error)
+    //             else resolve(createCompany)
+    //         })
+    //     })
+    // }
     },
   };
 

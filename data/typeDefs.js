@@ -96,10 +96,9 @@ input CompanyInput{
     # Multiple uploads are supported. See graphql-upload docs for details.
     singleUpload(file: Upload!): File!
 
-    # register(resgisterInput: RegisterInput): User
     # addJob(input: JobInput) : Jobs
-    createUser(input: RegisterInput): User
-    # autenticateUser(email: String!, password: String!): Token
+    register(input: RegisterInput): User
+    login(email: String!, password: String!): User
     # createCompany(input: CompanyInput) : Company
   }
 `;

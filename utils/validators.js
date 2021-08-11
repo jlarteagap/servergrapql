@@ -25,3 +25,18 @@ export const validateRegisterInput = (
         valid: Object.keys(errors).length < 1
     }
 }
+
+export const validateLoginInput = (email, password) => {
+    const errors = {}
+
+    if(email.trim() === ''){
+        errors.email = 'El correo no debe estar vacío'
+    }
+    if(password.trim() === ''){
+        errors.password = 'La contraseña no deber estar vacío'
+    }
+    return {
+        errors,
+        valid: Object.keys(errors).length < 1
+    }
+}
