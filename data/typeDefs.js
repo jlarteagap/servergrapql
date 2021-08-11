@@ -1,4 +1,4 @@
-import  { ApolloServer, gql } from 'apollo-server-express';
+import  { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
   scalar Upload
@@ -18,9 +18,7 @@ export const typeDefs = gql`
     company: Company
     startDate: String
   }
-  type Token{
-    token: String!
-  }
+
   type User {
     id: ID,
     name: String,
@@ -28,6 +26,8 @@ export const typeDefs = gql`
     email: String,
     password: String,
     role: String
+    token: String
+    createdAt: String
   }
   type Company {
     id: ID,
@@ -79,6 +79,11 @@ input CompanyInput{
     logo: String,
     user: String
 }
+  input RegisterInput{
+        password: String
+        confirmPassword: String
+        email: String
+    }
   type Query {
     getJobs(limit: Int, offset: Int): [Jobs]
     byCategories(category: String, limit: Int, offset: Int): [Jobs]
@@ -91,9 +96,11 @@ input CompanyInput{
     # Multiple uploads are supported. See graphql-upload docs for details.
     singleUpload(file: Upload!): File!
 
-    addJob(input: JobInput) : Jobs
-    createUser(email: String!, password: String!, name: String, lastname: String, company: String, role: String): String
-    autenticateUser(email: String!, password: String!): Token
-    createCompany(input: CompanyInput) : Company
+    # register(resgisterInput: RegisterInput): User
+    # addJob(input: JobInput) : Jobs
+    createUser(input: RegisterInput): User
+    # autenticateUser(email: String!, password: String!): Token
+    # createCompany(input: CompanyInput) : Company
   }
 `;
+

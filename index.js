@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'
 import  { ApolloServer } from 'apollo-server-express';
 import { graphqlUploadExpress } from 'graphql-upload';
 
@@ -6,9 +6,7 @@ import { resolvers } from './data/resolvers.js';
 import { typeDefs } from './data/typeDefs.js';
 import path from 'path';
 
-import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
-import cors from 'cors'
 
 dotenv.config()
 const port = process.env.PORT || 4000
@@ -24,18 +22,7 @@ async function startServer() {
     resolvers,
     introspection: true,
     playground: true,
-    context: async({req}) => {
-      const token = req.headers.authorization || '';
-
-      if(token !== null){
-        try{
-          const userActual = await jwt.verify(token, process.env.SECRET)
-          return userActual
-        } catch(err){
-          console.error(err)
-        }
-      }
-    }
+    context: ({req}) => ({ req })
   });
   await server.start();
   const app = express();
