@@ -47,12 +47,13 @@ export const userResolvers = {
         // validaciones 
         const { valid, errors} = validateRegisterInput(email, password, confirmPassword)
         if(!valid){
-            throw new UserInputError('Errors', { errors})
+            console.log(errors)
+            throw new UserInputError('message', {errors})
         }
         // verifacion de usuario registrado
         const user = await User.findOne({email})
         if(user){
-            throw new UserInputError('El correo electrónico esta registrado', {
+            throw new UserInputError('El correo electrónico esta registrado...', {
                 errors: {
                     email: 'Este correo electrónico esta registrado.'
                 }

@@ -33,7 +33,7 @@ export const validateLoginInput = (email, password) => {
         errors.email = 'El correo no debe estar vacío'
     }
     if(password.trim() === ''){
-        errors.password = 'La contraseña no deber estar vacío'
+        errors.password = 'La contraseña no deber estar vacía'
     }
     return {
         errors,
