@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import {User} from '../../data/db.js'
-import { validateRegisterInput, validateLoginInput } from '../../utils/validators.js'
+// import { validateRegisterInput, validateLoginInput } from '../../utils/validators.js'
 
 dotenv.config()
  
@@ -17,11 +17,14 @@ const generateToken =(user) =>{
 export const userResolvers = {
     Mutation: {
         login: async(root, {email, password}) => {
-            const { errors, valid } = validateLoginInput(email, password)
-    
-            if(!valid){
-                throw new UserInputError('Errors', {errors})
+            // Validaciones...
+            if(email.trim() === ''){
+                errors.email = 'El correo no debe estar vacío'
             }
+            if(password.trim() === ''){
+                errors.password = 'La contraseña no deber estar vacía'
+            }
+
             const user = await User.findOne({ email })
 
             if(!user){
@@ -44,13 +47,22 @@ export const userResolvers = {
             }
         }, 
         register: async(root, {input: { email, password, confirmPassword}}) => {
-        // validaciones 
-        const { valid, errors} = validateRegisterInput(email, password, confirmPassword)
-        if(!valid){
-            console.log(errors)
-            throw new UserInputError('message', {errors})
-        }
-        // verifacion de usuario registrado
+            // Validaciones de email...
+            if(email.trim() === ''){
+                throw new UserInputError('El correo electrónico no puede estar vacio.')
+            } else {
+                const regEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                if(!email.match(regEx)){
+                    throw new UserInputError('Ingrese un correo electrónico válido.')
+                }
+            }
+            //Validaciones de correo...
+            if(password === ''){
+                throw new UserInputError('La contraseña no puede estar vacio.')
+            } else if( password !== confirmPassword){
+                throw new UserInputError('Las contraseñas no coinciden.')
+            }
+
         const user = await User.findOne({email})
         if(user){
             throw new UserInputError('El correo electrónico esta registrado...', {
