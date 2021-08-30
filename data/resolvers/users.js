@@ -19,23 +19,21 @@ export const userResolvers = {
         login: async(root, {email, password}) => {
             // Validaciones...
             if(email.trim() === ''){
-                errors.email = 'El correo no debe estar vacío'
+                throw new UserInputError('El correo no debe estar vacío')
             }
             if(password.trim() === ''){
-                errors.password = 'La contraseña no deber estar vacía'
+                throw new UserInputError('La contraseña no deber estar vacía')
             }
 
             const user = await User.findOne({ email })
 
             if(!user){
-                errors.general = 'Usuario no encontrado'
-                throw new UserInputError('Credenciales incorrectas correo electrónico o contraseña no válidos', { errors })
+                throw new UserInputError('Credenciales incorrectas correo electrónico o contraseña no válidos')
             }
 
             const match = await bcrypt.compare(password, user.password)
             if(!match){
-                errors.general = 'Credenciales incorrectas correo electrónico o contraseña no válidos'
-                throw new UserInputError('Credenciales incorrectas correo electrónico o contraseña no válidos', { errors })
+                throw new UserInputError('Credenciales incorrectas correo electrónico o contraseña no válidos')
             }
     
             const token = generateToken(user)
