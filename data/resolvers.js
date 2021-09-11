@@ -15,8 +15,12 @@ import { GraphQLUpload } from 'graphql-upload';
 export const resolvers = {
     Upload: GraphQLUpload,
     Query: {
-      getJobs : (root, {limit, offset}) => {
-        return Jobs.find({}).limit(limit).skip(offset).sort({startDate: -1})
+      getJobs : (root, {category, limit, offset}) => {
+        let filter
+        if(category){
+            filter = {category}
+        }
+        return Jobs.find(filter).limit(limit).skip(offset).sort({startDate: -1})
       },
       //Seleccion por Categorias
         byCategories: (root, {category, limit, offset}) => {

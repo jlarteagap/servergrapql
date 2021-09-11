@@ -85,7 +85,7 @@ input CompanyInput{
         email: String
     }
   type Query {
-    getJobs(limit: Int, offset: Int): [Jobs]
+    getJobs(category: String, limit: Int, offset: Int): [Jobs]
     byCategories(category: String, limit: Int, offset: Int): [Jobs]
     totalJobs : String
     totalCategories(category: String): String
