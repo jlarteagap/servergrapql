@@ -48,7 +48,6 @@ export const resolvers = {
             })
         },
         getUser:(root, args, context) => {
-
             if(!context){
                 return null
             }
