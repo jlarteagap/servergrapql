@@ -22,8 +22,7 @@ export const resolvers = {
         }
         return Jobs.find(filter).limit(limit).skip(offset).sort({startDate: -1})
       },
-
-        totalJobs : (root) => {
+      totalJobs : (root) => {
             return new Promise((resolve, object) => {
                 Jobs.countDocuments({}, (error, count) => {
                     if(error) rejects(error)
@@ -31,6 +30,7 @@ export const resolvers = {
                 })
             })
         },
+        ...companyResolvers.Query
     },
     Mutation: {
       singleUpload: async (parent, { file }) => {

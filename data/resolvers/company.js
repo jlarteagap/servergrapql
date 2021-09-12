@@ -1,6 +1,11 @@
 import {Company} from '../db.js'
 
 export const companyResolvers = {
+        Query: {
+            allCompanies: (root, {user, limit, offset}) => {
+                return Company.find().limit(limit).skip(offset).sort({createadAt: -1})
+            }
+        },
         Mutation: {
             company: ( root, {input}) => {
                 const createCompany = new Company({
