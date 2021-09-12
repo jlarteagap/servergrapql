@@ -37,7 +37,8 @@ const companySchema = new mongoose.Schema({
     site: String,
     description: String,
     logo: String,
-    user: mongoose.Types.ObjectId
+    user: Array,
+    createdAt: String
 })
 
 const Company = mongoose.model('companies', companySchema)

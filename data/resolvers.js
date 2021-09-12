@@ -1,6 +1,6 @@
 import { Jobs, User, Company } from './db.js'
 import { userResolvers } from './resolvers/users.js'
-
+import { companyResolvers } from './resolvers/company.js'
 import fs from 'fs'
 import path from 'path';
 const __dirname = path.resolve();
@@ -22,15 +22,7 @@ export const resolvers = {
         }
         return Jobs.find(filter).limit(limit).skip(offset).sort({startDate: -1})
       },
-      //Seleccion por Categorias
-        byCategories: (root, {category, limit, offset}) => {
-            return new Promise((resolve, object) => {
-                Jobs.find({category: category}, (error, category) => {
-                    if(error) rejects(error)
-                    else resolve(category)
-                }).limit(limit).skip(offset).sort({startDate: -1})
-            })
-        },
+
         totalJobs : (root) => {
             return new Promise((resolve, object) => {
                 Jobs.countDocuments({}, (error, count) => {
@@ -39,21 +31,6 @@ export const resolvers = {
                 })
             })
         },
-        totalCategories : (root, {category})  =>{
-            return new Promise((resolve, object) => {
-                Jobs.countDocuments({category: category}, (error, count) => {
-                    if(error) rejects(error)
-                    else resolve(count)
-                })
-            })
-        },
-        getUser:(root, args, context) => {
-            if(!context){
-                return null
-            }
-            const user = User.findOne({ email: context.email})
-            return user
-        }
     },
     Mutation: {
       singleUpload: async (parent, { file }) => {
@@ -66,6 +43,7 @@ export const resolvers = {
         return { url: `${url}/images/${filename}` };
       },
       ...userResolvers.Mutation,
+      ...companyResolvers.Mutation
     //   addJob : (root, { input }) => {
     //     const addJob = new Jobs({
     //         company: input.company,
@@ -91,24 +69,7 @@ export const resolvers = {
     //     });
     //   },
 
-    // createCompany: ( root, {input}) => {
-    //     const createCompany = new Company({
-    //         name: input.name,
-    //         site: input.site,
-    //         description: input.description,
-    //         logo: input.logo,
-    //         user: input.user
-    //     })
 
-    //     createCompany.id = createCompany._id
-
-    //     return new Promise((resolve, object) => {
-    //         createCompany.save((error) =>{
-    //             if(error) rejects(error)
-    //             else resolve(createCompany)
-    //         })
-    //     })
-    // }
     },
   };
 

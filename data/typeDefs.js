@@ -35,7 +35,8 @@ export const typeDefs = gql`
     site: String
     description: String
     logo: String
-    user: String
+    createdAt: String
+    user: User
   }
 
   enum CategoryJob{
@@ -72,18 +73,20 @@ export const typeDefs = gql`
 }
 
 input CompanyInput{
-    id: ID
-    name: String,
-    site: String,
-    description: String,
-    logo: String,
-    user: String
+  id: ID
+  name: String,
+  site: String,
+  description: String,
+  logo: String,
+  user: String
 }
-  input RegisterInput{
-        password: String
-        confirmPassword: String
-        email: String
-    }
+
+input RegisterInput{
+  password: String
+  confirmPassword: String
+  email: String
+}
+
   type Query {
     getJobs(category: String, limit: Int, offset: Int): [Jobs]
     byCategories(category: String, limit: Int, offset: Int): [Jobs]
@@ -99,7 +102,8 @@ input CompanyInput{
     # addJob(input: JobInput) : Jobs
     register(input: RegisterInput): User
     login(email: String!, password: String!): User
-    # createCompany(input: CompanyInput) : Company
+
+    company(input: CompanyInput) : Company
   }
 `;
 
