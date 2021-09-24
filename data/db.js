@@ -37,7 +37,7 @@ const companySchema = new mongoose.Schema({
     site: String,
     description: String,
     logo: String,
-    user: Array,
+    username: String,
     createdAt: String
 })
 

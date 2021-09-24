@@ -36,7 +36,7 @@ export const typeDefs = gql`
     description: String
     logo: String
     createdAt: String
-    user: User
+    username: String
   }
 
   enum CategoryJob{
@@ -78,7 +78,7 @@ input CompanyInput{
   site: String,
   description: String,
   logo: String,
-  user: String
+  username: String
 }
 
 input RegisterInput{
@@ -102,6 +102,8 @@ input RegisterInput{
     login(email: String!, password: String!): User
 
     company(input: CompanyInput) : Company
+    deleteCompany(companyId: ID): String!
+
   }
 `;
 

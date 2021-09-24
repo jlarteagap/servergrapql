@@ -23,7 +23,9 @@ async function startServer() {
     introspection: true,
     playground: true,
     context: ({req}) => ({ req })
+
   });
+  
   await server.start();
   const app = express();
   // This middleware should be added before calling `applyMiddleware`.
