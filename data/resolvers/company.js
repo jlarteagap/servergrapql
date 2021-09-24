@@ -6,7 +6,7 @@ import checkAuth from '../../utils/checkAuth.js'
 export const companyResolvers = {
         Query: {
             allCompanies: (root, {username, limit, offset}) => {
-                return Company.find({username}).limit(limit).skip(offset).sort({createadAt: -1})
+                return Company.find({username}).limit(limit).skip(offset).sort({createdAt: -1})
             }
         },
         Mutation: {
