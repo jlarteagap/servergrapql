@@ -30,13 +30,9 @@ export const companyResolvers = {
                 })
             },
             deleteCompany: async(root, {companyId }, context) => {
-                
                 const user = checkAuth(context)
-                console.log(user)
                 try{
                     const company = await Company.findById(companyId)
-
-                    console.log(company)
                     if(user.email === company.username){
                         await company.delete()
                         return 'Compañia eleminada correctamente.'
