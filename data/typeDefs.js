@@ -90,7 +90,7 @@ input RegisterInput{
   type Query {
     getJobs(category: String, limit: Int, offset: Int): [Jobs]
     totalJobs : String
-    allCompanies(user: String, limit: Int, offset: Int): [Company]
+    allCompanies(username: String, limit: Int, offset: Int): [Company]
   }
 
   type Mutation {
