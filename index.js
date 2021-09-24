@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'
 import  { ApolloServer } from 'apollo-server-express';
 import { graphqlUploadExpress } from 'graphql-upload';
 
@@ -24,19 +24,10 @@ async function startServer() {
     resolvers,
     introspection: true,
     playground: true,
-    context: async({req}) => {
-      const token = req.headers.authorization || '';
+    context: ({req}) => ({ req })
 
-      if(token !== null){
-        try{
-          const userActual = await jwt.verify(token, process.env.SECRET)
-          return userActual
-        } catch(err){
-          console.error(err)
-        }
-      }
-    }
   });
+  
   await server.start();
   const app = express();
   // This middleware should be added before calling `applyMiddleware`.

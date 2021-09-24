@@ -1,4 +1,4 @@
-import  { ApolloServer, gql } from 'apollo-server-express';
+import  { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
   scalar Upload
@@ -18,9 +18,7 @@ export const typeDefs = gql`
     company: Company
     startDate: String
   }
-  type Token{
-    token: String!
-  }
+
   type User {
     id: ID,
     name: String,
@@ -28,6 +26,8 @@ export const typeDefs = gql`
     email: String,
     password: String,
     role: String
+    token: String
+    createdAt: String
   }
   type Company {
     id: ID,
@@ -35,7 +35,8 @@ export const typeDefs = gql`
     site: String
     description: String
     logo: String
-    user: String
+    createdAt: String
+    username: String
   }
 
   enum CategoryJob{
@@ -72,28 +73,37 @@ export const typeDefs = gql`
 }
 
 input CompanyInput{
-    id: ID
-    name: String,
-    site: String,
-    description: String,
-    logo: String,
-    user: String
+  id: ID
+  name: String,
+  site: String,
+  description: String,
+  logo: String,
+  username: String
 }
+
+input RegisterInput{
+  password: String
+  confirmPassword: String
+  email: String
+}
+
   type Query {
-    getJobs(limit: Int, offset: Int): [Jobs]
-    byCategories(category: String, limit: Int, offset: Int): [Jobs]
+    getJobs(category: String, limit: Int, offset: Int): [Jobs]
     totalJobs : String
-    totalCategories(category: String): String
-    getUser : User
+    allCompanies(user: String, limit: Int, offset: Int): [Company]
   }
 
   type Mutation {
     # Multiple uploads are supported. See graphql-upload docs for details.
     singleUpload(file: Upload!): File!
 
-    addJob(input: JobInput) : Jobs
-    createUser(email: String!, password: String!, name: String, lastname: String, company: String, role: String): String
-    autenticateUser(email: String!, password: String!): Token
-    createCompany(input: CompanyInput) : Company
+    # addJob(input: JobInput) : Jobs
+    register(input: RegisterInput): User
+    login(email: String!, password: String!): User
+
+    company(input: CompanyInput) : Company
+    deleteCompany(companyId: ID): String!
+
   }
 `;
+
