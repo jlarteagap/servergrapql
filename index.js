@@ -6,7 +6,9 @@ import { resolvers } from './data/resolvers.js';
 import { typeDefs } from './data/typeDefs.js';
 import path from 'path';
 
+import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 dotenv.config()
 const port = process.env.PORT || 4000
