@@ -16,7 +16,8 @@ export const typeDefs = gql`
     link: String
     remote: Boolean
     company: Company
-    startDate: String
+    createdAt: String
+    username: String
   }
 
   type User {
