@@ -15,9 +15,9 @@ export const typeDefs = gql`
     country: String
     link: String
     remote: Boolean
-    company: Company
+    company: [Company]
     createdAt: String
-    username: String
+    username: [User]
   }
 
   type User {
@@ -59,29 +59,28 @@ export const typeDefs = gql`
     PANDO
   }
 
-  input JobInput {
+input JobInput {
     id: ID
-    company: String
-    logo: String
     position: String
     category: String
     city: String
     country: String
     link: String
-    email: String
     remote: Boolean
-    startDate: String
+    createdAt: String
+    company: [CompanyInput]
+    username: [UserInput]
 }
 
 input CompanyInput{
   id: ID
   name: String,
-  site: String,
-  description: String,
   logo: String,
-  username: String
 }
-
+input UserInput {
+    id: ID,
+    email: String,
+  }
 input RegisterInput{
   password: String
   confirmPassword: String
@@ -98,7 +97,7 @@ input RegisterInput{
     # Multiple uploads are supported. See graphql-upload docs for details.
     singleUpload(file: Upload!): File!
 
-    # addJob(input: JobInput) : Jobs
+    newJob(input: JobInput) : Jobs
     register(input: RegisterInput): User
     login(email: String!, password: String!): User
 
