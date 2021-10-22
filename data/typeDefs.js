@@ -73,9 +73,12 @@ input JobInput {
 }
 
 input CompanyInput{
+  description: String
   id: ID
-  name: String,
-  logo: String,
+  logo: String
+  name: String
+  site: String
+  username: String
 }
 input UserInput {
     id: ID,
