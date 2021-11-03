@@ -8,7 +8,7 @@ export const jobsResolvers = {
             if(category){
                 filter = {category}
             }
-            return Jobs.find(filter).limit(limit).skip(offset).sort({startDate: -1})
+            return Jobs.find(filter).limit(limit).skip(offset).sort({createdAt: -1})
         },
         totalJobs : (root) => {
             return new Promise((resolve, object) => {
