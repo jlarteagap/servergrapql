@@ -101,6 +101,8 @@ input RegisterInput{
     singleUpload(file: Upload!): File!
 
     newJob(input: JobInput) : Jobs
+    deleteJobs(jobId: ID): String
+    
     register(input: RegisterInput): User
     login(email: String!, password: String!): User
 
