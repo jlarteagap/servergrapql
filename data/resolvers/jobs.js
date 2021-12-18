@@ -1,4 +1,5 @@
 
+import checkAuth from '../../utils/checkAuth.js'
 import { Jobs} from '../db.js'
 
 export const jobsResolvers = {
@@ -42,6 +43,22 @@ export const jobsResolvers = {
                     else resolve(newJob)
                 })
             });
-          }
+          },
+
+        deleteJobs : async(root, {jobId}, context) => {
+            const user = checkAuth(context)
+            try{
+                const job = await Jobs.findById(jobId)
+
+                if(user.email === job.username[0].email){
+                    await job.delete()
+                    return 'Publicacion eliminada correctamente.'
+                } else {
+                    throw new AuthenticationError('Action not allowed')
+                }
+            } catch (err) {
+                throw new Error(err)
+            }
+        }
     }
 }
