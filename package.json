@@ -22,11 +22,12 @@
     "nodemon": "^2.0.12"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.5",
     "@babel/polyfill": "^7.12.1",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1"
+    "@babel/preset-env": "^7.16.5",
+    "babel-cli": "^6.26.0"
   },
   "type": "module"
 }
