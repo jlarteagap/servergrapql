@@ -14,7 +14,8 @@ dotenv.config()
 const port = process.env.PORT || 4000
 
 const corsOptions = {
-  origin: 'https://server-tembiapo.herokuapp.com',
+  origin: true,
+  optionsSuccessStatus: 200,
   credentials: true
 }
 
