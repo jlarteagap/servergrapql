@@ -14,7 +14,7 @@ dotenv.config()
 const port = process.env.PORT || 4000
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://server-tembiapo.herokuapp.com',
   credentials: true
 }
 
