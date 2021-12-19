@@ -49,7 +49,7 @@ export const jobsResolvers = {
             const user = checkAuth(context)
             try{
                 const job = await Jobs.findById(jobId)
-
+                console.log(job.username[0].email)
                 if(user.email === job.username[0].email){
                     await job.delete()
                     return 'Publicacion eliminada correctamente.'
