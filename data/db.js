@@ -10,8 +10,6 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
 const jobsSchema = new mongoose.Schema({
     position: String,
     category: String,
-    city: String,
-    country: String,
     link: String,
     remote: Boolean,
     createdAt: String,

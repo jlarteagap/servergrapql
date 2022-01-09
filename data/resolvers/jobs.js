@@ -26,8 +26,6 @@ export const jobsResolvers = {
                 company: input.company,
                 position: input.position,
                 category: input.category,
-                city: input.city,
-                country: 'Bolivia',
                 link: input.link,
                 remote: input.remote,
                 createdAt: new Date().toISOString(),

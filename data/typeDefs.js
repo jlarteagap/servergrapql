@@ -11,8 +11,6 @@ export const typeDefs = gql`
     id: ID
     position: String
     category: CategoryJob
-    city: CityJob
-    country: String
     link: String
     remote: Boolean
     company: [Company]
@@ -47,23 +45,10 @@ export const typeDefs = gql`
     SALES
   }
 
-  enum CityJob{
-    SANTA_CRUZ
-    LA_PAZ
-    COCHABAMBA
-    CHUQUISACA
-    TARIJA
-    ORURO
-    POTOSI
-    BENI
-    PANDO
-  }
-
 input JobInput {
     id: ID
     position: String
     category: String
-    city: String
     country: String
     link: String
     remote: Boolean
