@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String,
     role: String,
-    company: Array,
     createdAt: String
 })
 
