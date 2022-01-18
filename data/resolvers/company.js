@@ -17,6 +17,8 @@ export const companyResolvers = {
                     description: input.description,
                     logo: input.logo,
                     username: input.username,
+                    phone: input.phone,
+                    activity: input.activity,
                     createdAt: new Date().toISOString()
                 })
         

@@ -23,7 +23,6 @@ export const jobsResolvers = {
     Mutation: {
         newJob : async(root, { input }) => {
             const newJob = new Jobs({
-                company: input.company,
                 position: input.position,
                 category: input.category,
                 city: input.city,
@@ -31,8 +30,11 @@ export const jobsResolvers = {
                 link: input.link,
                 remote: input.remote,
                 createdAt: new Date().toISOString(),
+                company: input.company,
+                username: input.username,
                 tags: input.tags,
-                username: input.username
+                type: String,
+                salary: String
             });
     
             newJob.id = newJob._id;

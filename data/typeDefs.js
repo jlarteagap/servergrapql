@@ -18,6 +18,8 @@ export const typeDefs = gql`
     company: [Company]
     createdAt: String
     username: [User]
+    type: String
+    salary: String
   }
 
   type User {
@@ -38,6 +40,8 @@ export const typeDefs = gql`
     logo: String
     createdAt: String
     username: String
+    phone: String
+    activity: String
   }
 
   enum CategoryJob{
@@ -70,6 +74,8 @@ input JobInput {
     createdAt: String
     company: [CompanyInput]
     username: [UserInput]
+    type: String
+    salary: String
 }
 
 input CompanyInput{
@@ -79,6 +85,8 @@ input CompanyInput{
   name: String
   site: String
   username: String
+  phone: String
+  activity: String
 }
 input UserInput {
     id: ID,
