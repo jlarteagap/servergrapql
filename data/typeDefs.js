@@ -16,6 +16,8 @@ export const typeDefs = gql`
     company: [Company]
     createdAt: String
     username: [User]
+    type: String
+    salary: String
   }
 
   type User {
@@ -36,6 +38,8 @@ export const typeDefs = gql`
     logo: String
     createdAt: String
     username: String
+    phone: String
+    activity: String
   }
 
   enum CategoryJob{
@@ -55,6 +59,8 @@ input JobInput {
     createdAt: String
     company: [CompanyInput]
     username: [UserInput]
+    type: String
+    salary: String
 }
 
 input CompanyInput{
@@ -64,6 +70,8 @@ input CompanyInput{
   name: String
   site: String
   username: String
+  phone: String
+  activity: String
 }
 input UserInput {
     id: ID,
@@ -86,14 +94,15 @@ input RegisterInput{
     singleUpload(file: Upload!): File!
 
     newJob(input: JobInput) : Jobs
+    updateJob(input: JobInput): Jobs
     deleteJobs(jobId: ID): String
     
     register(input: RegisterInput): User
     login(email: String!, password: String!): User
 
     company(input: CompanyInput) : Company
+    updateCompany(input: CompanyInput) : Company
     deleteCompany(companyId: ID): String!
-
   }
 `;
 

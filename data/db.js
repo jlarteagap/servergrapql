@@ -16,6 +16,8 @@ const jobsSchema = new mongoose.Schema({
     company: Array,
     username: Array,
     tags: Array,
+    type: String,
+    salary: String,
 });
 
 const Jobs = mongoose.model('jobs', jobsSchema);
@@ -36,8 +38,10 @@ const companySchema = new mongoose.Schema({
     site: String,
     description: String,
     logo: String,
+    phone: String,
     username: String,
-    createdAt: String
+    createdAt: String,
+    activity: String
 })
 
 const Company = mongoose.model('companies', companySchema)

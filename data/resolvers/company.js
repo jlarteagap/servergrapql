@@ -17,6 +17,8 @@ export const companyResolvers = {
                     description: input.description,
                     logo: input.logo,
                     username: input.username,
+                    phone: input.phone,
+                    activity: input.activity,
                     createdAt: new Date().toISOString()
                 })
         
@@ -41,6 +43,20 @@ export const companyResolvers = {
                     } 
                 } catch (err) {
                     throw new Error(err)
+                }
+            },
+            updateCompany: async (root, {input}, context) => {
+                const user = checkAuth(context)
+
+                try {
+                    const company = await Company.findById(input.id)
+
+                    if(user.email === company.username){
+                        const companies = await Company.findOneAndUpdate({_id: input.id}, input, {new: true, upsert: true, useFindAndModify: false})
+                            return companies
+                    }
+                } catch (error) {
+                    throw new Error(error)
                 }
             }
         }

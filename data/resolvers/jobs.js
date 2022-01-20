@@ -23,14 +23,16 @@ export const jobsResolvers = {
     Mutation: {
         newJob : async(root, { input }) => {
             const newJob = new Jobs({
-                company: input.company,
                 position: input.position,
                 category: input.category,
                 link: input.link,
                 remote: input.remote,
                 createdAt: new Date().toISOString(),
+                company: input.company,
+                username: input.username,
                 tags: input.tags,
-                username: input.username
+                type: String,
+                salary: String
             });
     
             newJob.id = newJob._id;
@@ -47,7 +49,7 @@ export const jobsResolvers = {
             const user = checkAuth(context)
             try{
                 const job = await Jobs.findById(jobId)
-                console.log(job.username[0].email)
+
                 if(user.email === job.username[0].email){
                     await job.delete()
                     return 'Publicacion eliminada correctamente.'
@@ -56,6 +58,18 @@ export const jobsResolvers = {
                 }
             } catch (err) {
                 throw new Error(err)
+            }
+        },
+        updateJob : async (root, {input}, context) => {
+            const user = checkAuth(context)
+            try {
+                const job = await Jobs.findById(input.id)
+                if(user.email === job.username[0].email){
+                    const jobs = await Jobs.findOneAndUpdate({_id: input.id}, input, {new: true, upsert: true, useFindAndModify: false})
+                        return jobs
+                }
+            } catch (error) {
+                throw new Error(error)
             }
         }
     }
