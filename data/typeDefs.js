@@ -109,14 +109,15 @@ input RegisterInput{
     singleUpload(file: Upload!): File!
 
     newJob(input: JobInput) : Jobs
+    updateJob(input: JobInput): Jobs
     deleteJobs(jobId: ID): String
     
     register(input: RegisterInput): User
     login(email: String!, password: String!): User
 
     company(input: CompanyInput) : Company
+    updateCompany(input: CompanyInput) : Company
     deleteCompany(companyId: ID): String!
-
   }
 `;
 
