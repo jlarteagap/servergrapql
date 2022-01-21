@@ -12,6 +12,8 @@ export const typeDefs = gql`
     position: String
     category: CategoryJob
     link: String
+    city: String
+    country: String
     remote: Boolean
     company: [Company]
     createdAt: String
@@ -53,6 +55,7 @@ input JobInput {
     id: ID
     position: String
     category: String
+    city: String
     country: String
     link: String
     remote: Boolean

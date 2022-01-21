@@ -27,12 +27,14 @@ export const jobsResolvers = {
                 category: input.category,
                 link: input.link,
                 remote: input.remote,
+                city: input.city,
+                country: input.country,
                 createdAt: new Date().toISOString(),
                 company: input.company,
                 username: input.username,
                 tags: input.tags,
-                type: String,
-                salary: String
+                type: input.type,
+                salary: input.salary
             });
     
             newJob.id = newJob._id;
