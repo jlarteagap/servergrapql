@@ -10,7 +10,7 @@ export const typeDefs = gql`
   type Jobs {
     id: ID
     position: String
-    category: CategoryJob
+    category: String
     link: String
     city: String
     country: String
@@ -42,13 +42,6 @@ export const typeDefs = gql`
     username: String
     phone: String
     activity: String
-  }
-
-  enum CategoryJob{
-    SOFTWARE_DEVELOP
-    SOCIAL_MEDIA
-    DESIGNER
-    SALES
   }
 
 input JobInput {
@@ -88,6 +81,7 @@ input RegisterInput{
 
   type Query {
     getJobs(category: String, limit: Int, offset: Int): [Jobs]
+    getJob(ID: ID): Jobs
     totalJobs : String
     allCompanies(username: String, limit: Int, offset: Int): [Company]
   }

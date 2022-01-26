@@ -11,6 +11,9 @@ export const jobsResolvers = {
             }
             return Jobs.find(filter).limit(limit).skip(offset).sort({createdAt: -1})
         },
+        getJob: async (root, {ID}) => {
+            return await Jobs.findById(ID)
+        },
         totalJobs : (root) => {
             return new Promise((resolve, object) => {
                 Jobs.countDocuments({}, (error, count) => {
