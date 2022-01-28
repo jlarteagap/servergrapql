@@ -7,6 +7,9 @@ export const companyResolvers = {
         Query: {
             allCompanies: (root, {username, limit, offset}) => {
                 return Company.find({username}).limit(limit).skip(offset).sort({createdAt: -1})
+            },
+            getCompany: async(root, {ID}) => {
+                return await Company.findById(ID)
             }
         },
         Mutation: {

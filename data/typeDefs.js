@@ -83,6 +83,7 @@ input RegisterInput{
     getJobs(category: String, limit: Int, offset: Int): [Jobs]
     getJob(ID: ID): Jobs
     totalJobs : String
+    getCompany(ID: ID): Company
     allCompanies(username: String, limit: Int, offset: Int): [Company]
   }
 
