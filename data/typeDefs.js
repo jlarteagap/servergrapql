@@ -80,7 +80,7 @@ input RegisterInput{
 }
 
   type Query {
-    getJobs(category: String, limit: Int, offset: Int): [Jobs]
+    getJobs(category: String, username: String, limit: Int, offset: Int): [Jobs]
     getJob(ID: ID): Jobs
     totalJobs : String
     getCompany(ID: ID): Company
