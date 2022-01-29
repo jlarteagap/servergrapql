@@ -4,10 +4,13 @@ import { Jobs} from '../db.js'
 
 export const jobsResolvers = {
     Query: {    
-        getJobs : (root, {category, limit, offset}) => {
+        getJobs : (root, { username, category, limit, offset}) => {
             let filter
             if(category){
                 filter = {category}
+            }
+            if(username){
+                filter = {"username.email": username}
             }
             return Jobs.find(filter).limit(limit).skip(offset).sort({createdAt: -1})
         },
