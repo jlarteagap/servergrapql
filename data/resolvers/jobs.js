@@ -54,6 +54,7 @@ export const jobsResolvers = {
           },
 
         deleteJobs : async(root, {jobId}, context) => {
+
             const user = checkAuth(context)
             try{
                 const job = await Jobs.findById(jobId)
