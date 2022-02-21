@@ -40,7 +40,8 @@ export const jobsResolvers = {
                 username: input.username,
                 tags: input.tags,
                 type: input.type,
-                salary: input.salary
+                salary: input.salary,
+                money: input.money,
             });
     
             newJob.id = newJob._id;

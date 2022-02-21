@@ -19,7 +19,8 @@ const jobsSchema = new mongoose.Schema({
     type: String,
     salary: String,
     city: String,
-    country: String
+    country: String,
+    money: String
 });
 
 const Jobs = mongoose.model('jobs', jobsSchema);

@@ -20,6 +20,7 @@ export const typeDefs = gql`
     username: [User]
     type: String
     salary: String
+    money: String
   }
 
   type User {
@@ -57,6 +58,7 @@ input JobInput {
     username: [UserInput]
     type: String
     salary: String
+    money: String
 }
 
 input CompanyInput{
