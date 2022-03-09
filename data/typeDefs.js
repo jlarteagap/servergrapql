@@ -34,6 +34,7 @@ export const typeDefs = gql`
     role: String
     token: String
     createdAt: String
+    updatedAt: String
   }
   type Company {
     id: ID,
@@ -42,6 +43,7 @@ export const typeDefs = gql`
     description: String
     logo: String
     createdAt: String
+    updatedAt: String
     username: String
     phone: String
     activity: String
