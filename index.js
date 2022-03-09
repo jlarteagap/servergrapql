@@ -1,18 +1,18 @@
 import express from 'express'
 import  { ApolloServer } from 'apollo-server-express';
-import { graphqlUploadExpress } from 'graphql-upload';
-
+import connectDB from './config/db.js'
 import { resolvers } from './data/resolvers.js';
 import { typeDefs } from './data/typeDefs.js';
 import path from 'path';
 
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
+import dotenv from 'dotenv/config'
 import cors from 'cors'
 
-dotenv.config()
 const port = process.env.PORT || 4000
+// Connect DB
+connectDB()
 
+// Cors 
 const corsOptions = {
   origin: true,
   optionsSuccessStatus: 200,
@@ -31,8 +31,6 @@ async function startServer() {
   
   await server.start();
   const app = express();
-  // This middleware should be added before calling `applyMiddleware`.
-  app.use(graphqlUploadExpress());
 
   app.use(express.static(path.resolve('./public')));
 

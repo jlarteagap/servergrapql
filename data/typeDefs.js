@@ -8,19 +8,21 @@ export const typeDefs = gql`
   }
 
   type Jobs {
-    id: ID
-    position: String
+    active: Boolean
     category: String
-    link: String
     city: String
-    country: String
-    remote: Boolean
     company: [Company]
+    country: String
     createdAt: String
-    username: [User]
-    type: String
-    salary: String
+    id: ID
+    link: String
     money: String
+    position: String
+    remote: Boolean
+    salary: String
+    type: String
+    updatedAt: String
+    username: [User]
   }
 
   type User {

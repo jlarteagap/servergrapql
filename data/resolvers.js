@@ -9,7 +9,6 @@ const url = process.env.PUBLIC_URL
 
 
 export const resolvers = {
-    Upload: GraphQLUpload,
     Query: {
         ...jobsResolvers.Query,
         ...companyResolvers.Query

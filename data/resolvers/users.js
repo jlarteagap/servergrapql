@@ -2,7 +2,7 @@ import { UserInputError } from 'apollo-server-express'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
-import {User} from '../../data/db.js'
+import { User } from '../models/userModel.js'
 // import { validateRegisterInput, validateLoginInput } from '../../utils/validators.js'
 
 dotenv.config()

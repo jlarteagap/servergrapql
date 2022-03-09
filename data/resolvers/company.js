@@ -1,6 +1,6 @@
 import { AuthenticationError } from "apollo-server-express";
 
-import { Company } from "../db.js";
+import { Company } from "../models/companyModel.js";
 import checkAuth from "../../utils/checkAuth.js";
 
 export const companyResolvers = {
