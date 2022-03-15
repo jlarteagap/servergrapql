@@ -38,6 +38,7 @@ export const jobsResolvers = {
         city: input.city,
         country: input.country,
         createdAt: new Date().toISOString(),
+        updateAt: new Date().toISOString(),
         company: input.company,
         username: input.username,
         tags: input.tags,

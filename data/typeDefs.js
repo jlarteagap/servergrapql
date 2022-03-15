@@ -51,18 +51,20 @@ export const typeDefs = gql`
 
 input JobInput {
     id: ID
-    position: String
+    active: Boolean
     category: String
     city: String
-    country: String
-    link: String
-    remote: Boolean
-    createdAt: String
     company: [CompanyInput]
-    username: [UserInput]
-    type: String
-    salary: String
+    country: String
+    createdAt: String
+    link: String
     money: String
+    position: String
+    remote: Boolean
+    salary: String
+    type: String
+    username: [UserInput]
+    updateAt: String
 }
 
 input CompanyInput{
@@ -74,6 +76,8 @@ input CompanyInput{
   username: String
   phone: String
   activity: String
+  createdAt: String,
+  updateAt: String
 }
 input UserInput {
     id: ID,
@@ -86,11 +90,11 @@ input RegisterInput{
 }
 
   type Query {
-    getJobs(category: String, username: String, limit: Int, offset: Int): [Jobs]
+    getJobs(category: String, username: String, limit: Int, offset: Int, active: Boolean, role: String): [Jobs]
     getJob(ID: ID): Jobs
     totalJobs : String
     getCompany(ID: ID): Company
-    allCompanies(username: String, limit: Int, offset: Int): [Company]
+    allCompanies(username: String, limit: Int, offset: Int, role: String): [Company]
   }
 
   type Mutation {

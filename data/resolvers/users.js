@@ -13,7 +13,7 @@ const generateToken = (user) =>{
         email: user.email,
         name: user.name,
         lastname: user.lastname
-    }, process.env.SECRET, {expiresIn: '1h'})
+    }, process.env.SECRET, {expiresIn: '30d'})
 }
 
 export const userResolvers = {
@@ -80,8 +80,8 @@ export const userResolvers = {
             name: "",
             lastname: "",
             password,
+            role: "user",
             createdAt: new Date().toISOString()
-
         })
 
         const res = await newUser.save()
