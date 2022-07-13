@@ -15,6 +15,7 @@ export const typeDefs = gql`
     companySimple: String
     country: String
     createdAt: String
+    updatedAt: String
     id: ID
     link: String
     money: String
@@ -22,8 +23,8 @@ export const typeDefs = gql`
     remote: Boolean
     salary: String
     type: String
-    updatedAt: String
     username: [User]
+    slug: String
   }
 
   type User {

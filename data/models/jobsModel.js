@@ -16,6 +16,7 @@ const jobsSchema = new mongoose.Schema(
     type: String,
     username: Array,
     companySimple: String,
+    slug:String,
   },
   {
     timestamps: true,

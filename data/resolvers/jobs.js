@@ -47,6 +47,7 @@ export const jobsResolvers = {
         salary: input.salary,
         money: input.money,
         companySimple: input.companySimple,
+        slug: input.slug,
       });
 
       newJob.id = newJob._id;
