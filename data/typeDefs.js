@@ -68,6 +68,7 @@ input JobInput {
     type: String
     username: [UserInput]
     updateAt: String
+    slug: String
 }
 
 input CompanyInput{
