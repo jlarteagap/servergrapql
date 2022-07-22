@@ -17,6 +17,7 @@ const jobsSchema = new mongoose.Schema(
     username: Array,
     companySimple: String,
     slug:String,
+    deletedAt: String
   },
   {
     timestamps: true,

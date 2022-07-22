@@ -16,6 +16,7 @@ export const typeDefs = gql`
     country: String
     createdAt: String
     updatedAt: String
+    deletedAt: String
     id: ID
     link: String
     money: String
@@ -60,6 +61,7 @@ input JobInput {
     company: [CompanyInput]
     country: String
     createdAt: String
+    deletedAt: String
     link: String
     money: String
     position: String
