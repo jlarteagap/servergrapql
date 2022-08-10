@@ -63,6 +63,13 @@ export const typeDefs = gql`
     name: String
     cities: [Cities]
   }
+
+  type Category {
+    id: ID
+    name: String
+    value: String
+    slug: String
+  }
   input JobInput {
     id: ID
     active: Boolean
@@ -114,6 +121,13 @@ export const typeDefs = gql`
     email: String
   }
 
+  input CategoryInput {
+    id: ID
+    name: String
+    value: String
+    slug: String
+  }
+
   input RegisterInput {
     password: String
     confirmPassword: String
@@ -139,6 +153,7 @@ export const typeDefs = gql`
       role: String
     ): [Company],
     allUbication: [Ubication]
+    allCategories: [Category]
   }
 
   type Mutation {
@@ -157,5 +172,7 @@ export const typeDefs = gql`
     deleteCompany(companyId: ID): String!
 
     ubication(input: UbicationInput): Ubication
+
+    category(input: CategoryInput): Category
   }
 `;

@@ -8,7 +8,7 @@ export const ubicationResolvers = {
     },
     Mutation: {
         ubication: async (root, { input }) => {
-            console.log(input);
+
             const createUbication = new Ubication({
                 name: input.name,
                 cities: input.cities,
