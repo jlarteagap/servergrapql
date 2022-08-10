@@ -26,6 +26,7 @@ export const typeDefs = gql`
     type: String
     username: [User]
     slug: String
+    ubication: [Ubication]
   }
 
   type User {
@@ -52,12 +53,15 @@ export const typeDefs = gql`
     activity: String
   }
   type Cities {
-    id: ID
     name: String
-    createdAt: String
-    updatedAt: String
     value: String
     slug: String
+  }
+
+  type Ubication {
+    id: ID
+    name: String
+    cities: [Cities]
   }
   input JobInput {
     id: ID
@@ -77,7 +81,8 @@ export const typeDefs = gql`
     type: String
     username: [UserInput]
     updateAt: String
-    slug: String
+    slug: String,
+    ubication: [UbicationInput]
   }
 
   input CompanyInput {
@@ -94,18 +99,21 @@ export const typeDefs = gql`
   }
 
   input CitiesInput {
-    id: ID
     name: String
-    createdAt: String
-    updatedAt: String
     value: String
     slug: String
+  }
+  input UbicationInput {
+    id: ID
+    name: String
+    cities: [CitiesInput]
   }
 
   input UserInput {
     id: ID
     email: String
   }
+
   input RegisterInput {
     password: String
     confirmPassword: String
@@ -130,7 +138,7 @@ export const typeDefs = gql`
       offset: Int
       role: String
     ): [Company],
-    allCities: [Cities],
+    allUbication: [Ubication]
   }
 
   type Mutation {
@@ -148,6 +156,6 @@ export const typeDefs = gql`
     updateCompany(input: CompanyInput): Company
     deleteCompany(companyId: ID): String!
 
-    city(input: CitiesInput): Cities
+    ubication(input: UbicationInput): Ubication
   }
 `;
