@@ -49,6 +49,7 @@ export const jobsResolvers = {
         companySimple: input.companySimple,
         slug: input.slug,
         deletedAt: new Date(new Date().setDate(new Date().getDate() + 15)).toISOString(),
+        ubication: input.ubication
       });
 
       newJob.id = newJob._id;
