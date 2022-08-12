@@ -1,4 +1,4 @@
-import { Ubication } from "../models/ubication.js";
+import { Ubication } from "../models/ubicationModel.js";
 
 export const ubicationResolvers = {
     Query: {
@@ -8,11 +8,10 @@ export const ubicationResolvers = {
     },
     Mutation: {
         ubication: async (root, { input }) => {
-
+            console.log(input);
             const createUbication = new Ubication({
                 name: input.name,
-                cities: input.cities,
-                createat: new Date().toISOString(),
+                cities: input.cities
             })
             createUbication.id = createUbication._id;
 
