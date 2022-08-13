@@ -19,6 +19,7 @@ const jobsSchema = new mongoose.Schema(
     slug:String,
     deletedAt: String,
     ubication: Array,
+    content: String,
   },
   {
     timestamps: true,

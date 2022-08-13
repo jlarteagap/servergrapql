@@ -27,6 +27,7 @@ export const typeDefs = gql`
     username: [User]
     slug: String
     ubication: [Ubication]
+    content: Content
   }
 
   type User {
@@ -70,6 +71,16 @@ export const typeDefs = gql`
     value: String
     slug: String
   }
+
+  type Content {
+    id: ID
+    title: String
+    description: String
+    tags: [String]
+    currency: String
+    salary: String
+  }
+
   input JobInput {
     id: ID
     active: Boolean
@@ -90,6 +101,7 @@ export const typeDefs = gql`
     updateAt: String
     slug: String,
     ubication: [UbicationInput]
+    content: ContentInput
   }
 
   input CompanyInput {
@@ -120,7 +132,14 @@ export const typeDefs = gql`
     id: ID
     email: String
   }
-
+  input ContentInput {
+    id: ID
+    title: String
+    description: String
+    tags: [String]
+    currency: String
+    salary: String
+  }
   input CategoryInput {
     id: ID
     name: String

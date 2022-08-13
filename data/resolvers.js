@@ -1,4 +1,4 @@
-import { userResolvers } from './resolvers/users.js'
+import { userResolvers } from './resolvers/usersResolvers.js';
 import { companyResolvers } from './resolvers/company.js'
 import { jobsResolvers } from './resolvers/jobs.js'
 import { ubicationResolvers } from './resolvers/ubicactionResolver.js';
