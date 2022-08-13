@@ -63,6 +63,7 @@ export const typeDefs = gql`
     id: ID
     name: String
     cities: [Cities]
+    remote: Boolean
   }
 
   type Category {
@@ -126,6 +127,7 @@ export const typeDefs = gql`
     id: ID
     name: String
     cities: [CitiesInput]
+    remote: Boolean
   }
 
   input UserInput {

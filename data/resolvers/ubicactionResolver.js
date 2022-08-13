@@ -11,7 +11,8 @@ export const ubicationResolvers = {
             console.log(input);
             const createUbication = new Ubication({
                 name: input.name,
-                cities: input.cities
+                cities: input.cities,
+                remote: input.remote
             })
             createUbication.id = createUbication._id;
 
