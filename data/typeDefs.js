@@ -10,20 +10,20 @@ export const typeDefs = gql`
   type Jobs {
     active: Boolean
     category: String
-    city: String
+    city: String @deprecated(reason: "Use a new Structure")
     company: [Company]
     companySimple: String
-    country: String
+    country: String @deprecated(reason: "Use a new Structure")
     createdAt: String
     updatedAt: String
     deletedAt: String
     id: ID
     link: String
-    money: String
-    position: String
-    remote: Boolean
-    salary: String
-    type: String
+    money: String @deprecated(reason: "Use a new Structure")
+    position: String @deprecated(reason: "Use a new Structure")
+    remote: Boolean @deprecated(reason: "Use a new Structure")
+    salary: String @deprecated(reason: "Use a new Structure")
+    type: String @deprecated(reason: "Use a new Structure")
     username: [User]
     slug: String
     ubication: [Ubication]
