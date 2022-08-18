@@ -12,7 +12,7 @@ export const ubicationResolvers = {
             const createUbication = new Ubication({
                 name: input.name,
                 cities: input.cities,
-                remote: input.remote
+                value: input.value,
             })
             createUbication.id = createUbication._id;
 

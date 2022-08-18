@@ -21,7 +21,7 @@ export const typeDefs = gql`
     link: String
     money: String @deprecated(reason: "Use a new Structure")
     position: String @deprecated(reason: "Use a new Structure")
-    remote: Boolean @deprecated(reason: "Use a new Structure")
+    remote: Boolean
     salary: String @deprecated(reason: "Use a new Structure")
     type: String @deprecated(reason: "Use a new Structure")
     username: [User]
@@ -62,8 +62,8 @@ export const typeDefs = gql`
   type Ubication {
     id: ID
     name: String
+    value: String
     cities: [Cities]
-    remote: Boolean
   }
 
   type Category {
