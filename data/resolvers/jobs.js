@@ -30,6 +30,7 @@ export const jobsResolvers = {
   },
   Mutation: {
     newJob: async (root, { input }) => {
+      console.log(input)
       const newJob = new Jobs({
         active: input.active,
         position: input.position,

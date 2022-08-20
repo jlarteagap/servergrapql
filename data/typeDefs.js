@@ -11,7 +11,7 @@ export const typeDefs = gql`
     active: Boolean
     category: String
     city: String @deprecated(reason: "Use a new Structure")
-    company: [Company]
+    company: Company
     companySimple: String
     country: String @deprecated(reason: "Use a new Structure")
     createdAt: String
@@ -24,9 +24,9 @@ export const typeDefs = gql`
     remote: Boolean
     salary: String @deprecated(reason: "Use a new Structure")
     type: String @deprecated(reason: "Use a new Structure")
-    username: [User]
+    username: User
     slug: String
-    ubication: [Ubication]
+    ubication: Ubication
     content: Content
   }
 
@@ -63,7 +63,7 @@ export const typeDefs = gql`
     id: ID
     name: String
     value: String
-    cities: [Cities]
+    cities: Cities
   }
 
   type Category {
@@ -75,11 +75,12 @@ export const typeDefs = gql`
 
   type Content {
     id: ID
-    title: String
-    description: String
-    tags: [String]
     currency: String
+    description: String
     salary: String
+    tags: [String]
+    title: String
+    contract: String
   }
 
   input JobInput {
@@ -88,7 +89,7 @@ export const typeDefs = gql`
     category: String
     companySimple: String
     city: String
-    company: [CompanyInput]
+    company: CompanyInput
     country: String
     createdAt: String
     deletedAt: String
@@ -98,10 +99,10 @@ export const typeDefs = gql`
     remote: Boolean
     salary: String
     type: String
-    username: [UserInput]
+    username: UserInput
     updateAt: String
     slug: String,
-    ubication: [UbicationInput]
+    ubication: UbicationInput
     content: ContentInput
   }
 
@@ -126,7 +127,7 @@ export const typeDefs = gql`
   input UbicationInput {
     id: ID
     name: String
-    cities: [CitiesInput]
+    cities: CitiesInput
     remote: Boolean
   }
 
@@ -141,6 +142,7 @@ export const typeDefs = gql`
     tags: [String]
     currency: String
     salary: String
+    contract: String
   }
   input CategoryInput {
     id: ID
