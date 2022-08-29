@@ -8,7 +8,6 @@ export const categoryResolvers = {
     },
     Mutation: {
         category: async (root, { input }) => {
-            console.log(input);
             const createCategory = new Category({
                 name: input.name,
                 value: input.value,
