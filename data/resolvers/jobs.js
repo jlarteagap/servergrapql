@@ -50,7 +50,7 @@ export const jobsResolvers = {
         companySimple: input.companySimple,
         slug: input.slug,
         deletedAt: new Date(new Date().setDate(new Date().getDate() + 15)).toISOString(),
-        ubication: input.ubication,
+        location: input.location,
         content: input.content,
       });
 

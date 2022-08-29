@@ -26,8 +26,8 @@ export const typeDefs = gql`
     type: String @deprecated(reason: "Use a new Structure")
     username: User
     slug: String
-    ubication: Ubication
     content: Content
+    location: Location
   }
 
   type User {
@@ -58,7 +58,15 @@ export const typeDefs = gql`
     value: String
     slug: String
   }
-
+  type Country {
+    name: String
+    value: String
+    slug: String
+  }
+  type Location{
+    country: Country
+    city: Cities
+  }
   type Ubication {
     id: ID
     name: String
@@ -101,9 +109,9 @@ export const typeDefs = gql`
     type: String
     username: UserInput
     updateAt: String
-    slug: String,
-    ubication: UbicationInput
+    slug: String
     content: ContentInput
+    location: LocationInput
   }
 
   input CompanyInput {
@@ -119,10 +127,20 @@ export const typeDefs = gql`
     updateAt: String
   }
 
+  input CountryInput{
+      name: String
+      value: String
+      slug: String
+  }
   input CitiesInput {
     name: String
     value: String
     slug: String
+  }
+
+  input LocationInput{
+    country: CountryInput
+    city: CitiesInput
   }
   input UbicationInput {
     id: ID

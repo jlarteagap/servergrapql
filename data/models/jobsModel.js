@@ -18,7 +18,7 @@ const jobsSchema = new mongoose.Schema(
     companySimple: String,
     slug:String,
     deletedAt: String,
-    ubication: Object,
+    location: Object,
     content: Object,
   },
   {
