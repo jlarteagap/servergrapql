@@ -63,7 +63,7 @@ export const typeDefs = gql`
     id: ID
     name: String
     value: String
-    cities: [Cities]
+    cities: Cities
   }
 
   type Category {
@@ -127,7 +127,7 @@ export const typeDefs = gql`
   input UbicationInput {
     id: ID
     name: String
-    cities: [CitiesInput]
+    cities: CitiesInput
     remote: Boolean
   }
 
