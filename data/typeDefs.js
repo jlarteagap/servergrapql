@@ -127,7 +127,7 @@ export const typeDefs = gql`
   input UbicationInput {
     id: ID
     name: String
-    cities: CitiesInput
+    cities: [CitiesInput]
     remote: Boolean
   }
 
