@@ -69,7 +69,7 @@ export const jobsResolvers = {
       try {
         const job = await Jobs.findById(jobId);
 
-        if (user.email === job.username[0].email) {
+        if (user.email === job.username.email) {
           await job.delete();
           return "Publicacion eliminada correctamente.";
         } else {
@@ -80,10 +80,13 @@ export const jobsResolvers = {
       }
     },
     updateJob: async (root, { input }, context) => {
+
       const user = checkAuth(context);
+      console.log(user)
       try {
         const job = await Jobs.findById(input.id);
-        if (user.email === job.username[0].email) {
+        console.log(job)
+        if (user.email === job.username.email) {
           const jobs = await Jobs.findOneAndUpdate({ _id: input.id }, input, {
             new: true,
             upsert: true,
