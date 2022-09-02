@@ -30,7 +30,6 @@ export const jobsResolvers = {
   },
   Mutation: {
     newJob: async (root, { input }) => {
-      console.log(input)
       const newJob = new Jobs({
         active: input.active,
         position: input.position,
@@ -82,10 +81,10 @@ export const jobsResolvers = {
     updateJob: async (root, { input }, context) => {
 
       const user = checkAuth(context);
-      console.log(user)
+
       try {
         const job = await Jobs.findById(input.id);
-        console.log(job)
+
         if (user.email === job.username.email) {
           const jobs = await Jobs.findOneAndUpdate({ _id: input.id }, input, {
             new: true,
