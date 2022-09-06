@@ -3,13 +3,19 @@ import { Jobs } from '../models/jobsModel.js'
 
 export const jobsResolvers = {
   Query: {
-    getJobs: (root, { username, category, limit, offset }) => {
+    getJobs: (root, { username, category, limit, offset, active }) => {
       let filter;
       if (category) {
-        filter = { category };
+        filter = {category};
+      }
+      if(active) {
+        filter = {active}
+      }
+      if(category & active){
+        filter = {category, active}
       }
       if (username) {
-        filter = { "username.email": username };
+        filter =  {"username.email": username} ;
       }
       return Jobs.find(filter)
         .limit(limit)
@@ -40,6 +46,7 @@ export const jobsResolvers = {
         country: input.country,
         createdAt: new Date().toISOString(),
         updateAt: new Date().toISOString(),
+        deletedAt: new Date(new Date().setDate(new Date().getDate() + 15)).toISOString(),
         company: input.company,
         username: input.username,
         tags: input.tags,
@@ -48,7 +55,6 @@ export const jobsResolvers = {
         money: input.money,
         companySimple: input.companySimple,
         slug: input.slug,
-        deletedAt: new Date(new Date().setDate(new Date().getDate() + 15)).toISOString(),
         location: input.location,
         content: input.content,
       });
@@ -79,7 +85,6 @@ export const jobsResolvers = {
       }
     },
     updateJob: async (root, { input }, context) => {
-
       const user = checkAuth(context);
 
       try {
