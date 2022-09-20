@@ -25,6 +25,9 @@ export const jobsResolvers = {
     getJob: async (root, { ID }) => {
       return await Jobs.findById(ID);
     },
+    getPost: (root, { slug }) => {
+      return Jobs.findOne({ "slug": slug });
+    },
     totalJobs: (root) => {
       return new Promise((resolve, object) => {
         Jobs.countDocuments({}, (error, count) => {

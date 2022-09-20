@@ -185,6 +185,7 @@ export const typeDefs = gql`
       role: String
     ): [Jobs]
     getJob(ID: ID): Jobs
+    getPost(slug: String): Jobs
     totalJobs: String
     getCompany(ID: ID): Company
     allCompanies(
