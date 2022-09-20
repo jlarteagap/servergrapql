@@ -3,30 +3,40 @@ import { Jobs } from '../models/jobsModel.js'
 
 export const jobsResolvers = {
   Query: {
-    getJobs: (root, { username, category, limit, offset, active }) => {
-      let filter;
-      if (category) {
-        filter = {category};
-      }
-      if(active) {
-        filter = {active}
-      }
-      if(category & active){
-        filter = {category, active}
-      }
-      if (username) {
-        filter =  {"username.email": username} ;
-      }
-      return Jobs.find(filter)
+    getJobs: async (root, { username, category, limit, offset, active }) => {
+
+      if(category && active){
+        return await Jobs.find({category, active})
         .limit(limit)
         .skip(offset)
         .sort({ createdAt: -1 });
+      }
+
+      if (category) {
+        return await Jobs.find({category})
+        .limit(limit)
+        .skip(offset)
+        .sort({ createdAt: -1 });
+      }
+      if (username) {
+        return await Jobs.find({"username.email": username})
+        .limit(limit)
+        .skip(offset)
+        .sort({ createdAt: -1 });
+      }
+      if(active) {
+        return await Jobs.find({active})
+        .limit(limit)
+        .skip(offset)
+        .sort({ createdAt: -1 });
+        
+      }
     },
     getJob: async (root, { ID }) => {
       return await Jobs.findById(ID);
     },
-    getPost: (root, { slug }) => {
-      return Jobs.findOne({ "slug": slug });
+    getPost: async (root, { slug }) => {
+      return await Jobs.findOne({ "slug": slug });
     },
     totalJobs: (root) => {
       return new Promise((resolve, object) => {
