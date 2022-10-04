@@ -1,12 +1,6 @@
 import { gql } from "apollo-server-express";
 
 export const typeDefs = gql`
-  scalar Upload
-
-  type File {
-    url: String
-  }
-
   type Jobs {
     active: Boolean
     category: String
@@ -199,9 +193,6 @@ export const typeDefs = gql`
   }
 
   type Mutation {
-    # Multiple uploads are supported. See graphql-upload docs for details.
-    singleUpload(file: Upload!): File!
-
     newJob(input: JobInput): Jobs
     updateJob(input: JobInput): Jobs
     deleteJobs(jobId: ID): String
