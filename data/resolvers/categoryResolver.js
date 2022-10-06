@@ -4,6 +4,9 @@ export const categoryResolvers = {
     Query: {
         allCategories: () => {
             return Category.find({});
+        },
+        getCategory: async (root, {slug}) => {
+            return await Category.findOne({"slug": slug})
         }
     },
     Mutation: {

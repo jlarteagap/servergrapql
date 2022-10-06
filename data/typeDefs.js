@@ -187,9 +187,10 @@ export const typeDefs = gql`
       limit: Int
       offset: Int
       role: String
-    ): [Company],
+    ): [Company]
     allUbication: [Ubication]
     allCategories: [Category]
+    getCategory(slug: String): Category
   }
 
   type Mutation {
