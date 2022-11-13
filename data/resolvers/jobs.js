@@ -4,20 +4,37 @@ import { Jobs } from '../models/jobsModel.js'
 export const jobsResolvers = {
   Query: {
     getJobs: async (root, { username, category, limit, offset, active }) => {
-      let filter;
       if(category && active){
-        filter = {category, active}
+        return await Jobs.find({category, active})
+        .limit(limit)
+        .skip(offset)
+        .sort({ updatedAt: -1 });
       }
-      if(category){ filter = {category}}
-      if(username){
-        filter = {"username.email": username}
-      }
-      if(active){ filter = {active}}
 
-      return await Jobs.find(filter)
-      .limit(limit)
-      .skip(offset)
-      .sort({ updatedAt: -1 });
+      if (category) {
+        return await Jobs.find({category})
+        .limit(limit)
+        .skip(offset)
+        .sort({ updatedAt: -1 });
+      }
+      if (username) {
+        return await Jobs.find({"username.email": username})
+        .limit(limit)
+        .skip(offset)
+
+      }
+      if(active) {
+        return await Jobs.find({active})
+        .limit(limit)
+        .skip(offset)
+        .sort({ updatedAt: -1 });
+        
+      }
+
+      return await Jobs.find()
+        .limit(limit)
+        .skip(offset)
+        .sort({ createdAt: -1 });
     },
 
     getJob: async (root, { ID }) => {
