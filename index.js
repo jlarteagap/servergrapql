@@ -3,7 +3,6 @@ import  { ApolloServer } from 'apollo-server-express';
 import connectDB from './config/db.js'
 import { resolvers } from './data/resolvers.js';
 import { typeDefs } from './data/typeDefs.js';
-import path from 'path';
 
 import dotenv from 'dotenv/config'
 import cors from 'cors'
@@ -31,8 +30,6 @@ async function startServer() {
   
   await server.start();
   const app = express();
-
-  app.use(express.static(path.resolve('./public')));
 
   server.applyMiddleware({ app, cors: corsOptions });
 
