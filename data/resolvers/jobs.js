@@ -21,7 +21,7 @@ export const jobsResolvers = {
         return await Jobs.find({"username.email": username})
         .limit(limit)
         .skip(offset)
-
+        .sort({ createdAt: -1 });
       }
       if(active) {
         return await Jobs.find({active})
