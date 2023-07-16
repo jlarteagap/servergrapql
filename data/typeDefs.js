@@ -198,6 +198,7 @@ export const typeDefs = gql`
     newJob(input: JobInput): Jobs
     updateJob(input: JobInput): Jobs
     deleteJobs(jobId: ID): String
+    changeActiveJobs(input: JobInput): Jobs
 
     register(input: RegisterInput): User
     login(email: String!, password: String!): User

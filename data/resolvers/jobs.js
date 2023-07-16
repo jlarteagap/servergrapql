@@ -133,5 +133,17 @@ export const jobsResolvers = {
         throw new Error(error);
       }
     },
+    changeActiveJobs: async(root, {input}) => {
+      try {
+        const jobs = await Jobs.findOneAndUpdate({_id: input.id}, input, {
+          new: true,
+          upsert: true,
+          useFindAndModify: false
+        })
+        return jobs
+      } catch (error) {
+       throw new Error(error)
+      }
+    }
   },
 };
