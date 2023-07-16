@@ -51,6 +51,19 @@ export const jobsResolvers = {
         });
       });
     },
+
+    totalActiveJobs: (root) => {
+      return new Promise((resolve, object) => {
+        Jobs.countDocuments({ active: true }, (error, count) =>{
+          if (error) rejects(error);
+          else resolve(count);
+        })
+      })
+      Jobs.countDocuments({ active: true }, function (err, count) {
+        console.log('there are %d jungle adventures', count);
+      });
+    }
+
   },
   Mutation: {
     newJob: async (root, { input }) => {

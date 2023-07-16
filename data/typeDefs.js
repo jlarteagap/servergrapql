@@ -180,7 +180,8 @@ export const typeDefs = gql`
     ): [Jobs]
     getJob(ID: ID): Jobs
     getPost(slug: String): Jobs
-    totalJobs: String
+    totalJobs: String,
+    totalActiveJobs: String,
     getCompany(ID: ID): Company
     allCompanies(
       username: String
